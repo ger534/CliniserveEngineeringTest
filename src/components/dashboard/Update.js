@@ -31,6 +31,9 @@ export default function Update() {
   //fetch data
   useEffect(() => getData(t).then(res => {
     setupdateDate(res.data);
+    return () => {
+      setupdateDate(undefined) 
+    };
   }).catch(e => {
     setupdateDate('')
   }), []);  // eslint-disable-line react-hooks/exhaustive-deps

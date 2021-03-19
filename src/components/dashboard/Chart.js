@@ -18,6 +18,10 @@ export default function Chart() {
       date["date"] = date["date"].toString().slice(0, -14)
     });
     setData(res.data.data["09162"].history)
+    ;
+    return () => {
+      setData(undefined) 
+    };
   }).catch(e => {
     setData([])
   }), []); // eslint-disable-line react-hooks/exhaustive-deps

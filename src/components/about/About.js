@@ -8,23 +8,25 @@ import clsx from 'clsx';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    display: 'block',
   },
   title: {
     flexGrow: 1,
   },
   container: {
+    display: 'block',
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
   },
   paper: {
+    display: 'block',
     padding: theme.spacing(2),
-    display: 'flex',
     overflow: 'auto',
     flexDirection: 'column',
   },
   fixedHeight: {
     height: 240,
+    width: "100%"
   },
 }));
 
@@ -46,7 +48,7 @@ export default function About() {
           <Typography color="primary" component="p" variant="h3">
             {t('about.Q1')}
           </Typography>
-          <Typography component="p" variant="p">
+          <Typography component="p" variant="subtitle1">
             {t('about.AnswerQ1')}
           </Typography>
         </Grid>
@@ -57,7 +59,7 @@ export default function About() {
           <Typography color="primary" component="p" variant="h3">
             {t('about.Q2')}
           </Typography>
-          <Typography component="p" variant="p">
+          <Typography component="p" variant="subtitle1">
             {t('about.AnswerQ2')}
           </Typography>
         </Grid>
@@ -68,7 +70,7 @@ export default function About() {
           <Typography color="primary" component="p" variant="h3">
             {t('about.Q3')}
           </Typography>
-          <Typography component="p" variant="p">
+          <Typography component="p" variant="subtitle1">
             {t('about.AnswerQ3')}
           </Typography>
         </Grid>

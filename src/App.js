@@ -4,7 +4,6 @@ import About from '../src/components/about/About'
 
 import {
   BrowserRouter as Router,
-  Link,
   Switch,
   Route
 } from 'react-router-dom';
@@ -23,7 +22,7 @@ import Badge from '@material-ui/core/Badge';
 import Drawer from '@material-ui/core/Drawer';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-
+import {Link as LinkMaterial,} from '@material-ui/core/';
 
 
 import clsx from 'clsx';
@@ -36,12 +35,13 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 
+
 function Footer(props) {
   return (
     <Typography variant="body2" color="textSecondary" align="center" {...props}>
-      <Link color="inherit" href="https://github.com/Cliniserve/EngineeringTest" to="/">
+      <LinkMaterial style={{ textDecoration: 'none', color: 'textSecondary'}} color="inherit" href="https://github.com/Cliniserve/EngineeringTest">
         Cliniserve Engineering Recruiting Test
-      </Link>{' '}
+      </LinkMaterial>{' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -132,24 +132,28 @@ function App() {
 
   //language
   const { t, i18n } = useTranslation('common');
+  const languages = i18n.languages
 
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  const [openDrawer, setopenDrawer] = React.useState(true);
+
   const handleDrawerOpen = () => {
-    setOpen(true);
+    setopenDrawer(true);
   };
   const handleDrawerClose = () => {
-    setOpen(false);
+    setopenDrawer(false);
   };
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleClick = (event) => {
+  const handleLanguageOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = (lan,event) => {
-    i18n.changeLanguage(lan)
+  const handleLanguageClose = (lan, event) => {
+    if (typeof lan === 'string') {
+      i18n.changeLanguage(lan.toString())
+    }
     setAnchorEl(null);
   };
 
@@ -161,46 +165,50 @@ function App() {
       <CssBaseline />
       <Router>
 
-        <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+        <AppBar position="absolute" className={clsx(classes.appBar, openDrawer && classes.appBarShift)}>
           <Toolbar className={classes.toolbar}>
             <IconButton
               edge="start"
               color="inherit"
               aria-label="open drawer"
+              aria-controls="language-menu"
               onClick={handleDrawerOpen}
-              className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+              className={clsx(classes.menuButton, openDrawer && classes.menuButtonHidden)}
             >
               <MenuIcon />
             </IconButton>
             <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
               {t('title')}
             </Typography>
-            <IconButton color="inherit" onClick={handleClick}>
-              <Badge color="secondary">
+            <IconButton color="inherit" onClick={handleLanguageOpen}>
+              <Badge color="secondary" >
                 <LanguageIcon />
               </Badge>
 
-              <Menu
-                id="simple-menu"
-                anchorEl={anchorEl}
-                keepMounted
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-              >
-                {i18n.languages.map((lan) => 
-                  <MenuItem key={lan} onClick={(event) => handleClose(lan, event)} >{lan}</MenuItem>
 
-                )}
-              </Menu>
             </IconButton>
+            
+            <Menu
+              id="language-menu"
+              anchorEl={anchorEl}
+              keepMounted
+              open={Boolean(anchorEl)}
+              onClose={handleLanguageClose}
+            >
+              {languages.map((lan) =>
+                <MenuItem key={lan} onClick={(event) => handleLanguageClose(lan, event)} >{lan}</MenuItem>
+              )}
+            </Menu>
+            
           </Toolbar>
         </AppBar>
+        
         <Drawer
           variant="permanent"
           classes={{
-            paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+            paper: clsx(classes.drawerPaper, !openDrawer && classes.drawerPaperClose),
           }}
-          open={open}
+          open={openDrawer}
         >
           <div className={classes.toolbarIcon}>
             <IconButton onClick={handleDrawerClose}>

@@ -42,8 +42,12 @@ export default function Cases() {
       date["date"] = date["date"].toString().slice(0, -14)
     });
     rows.history = rows.history.reverse()
-    setData(rows)
+    setData(rows);
+    return () => {
+      setData(undefined) 
+    };
   }).catch(e => {
+    setData(undefined)
     rows = []
   }), []); // eslint-disable-line react-hooks/exhaustive-deps
 
