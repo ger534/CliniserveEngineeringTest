@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import clsx from 'clsx';
+import { flags } from '../../flags'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,7 +50,8 @@ export default function About() {
             {t('about.Q1')}
           </Typography>
           <Typography component="p" variant="subtitle1">
-            {t('about.AnswerQ1')}
+            
+            {t('about.AnswerQ1')} <a href={flags().moreAboutCovid}>{t('about.Q1')}</a>.
           </Typography>
         </Grid>
       </Paper>
@@ -60,7 +62,7 @@ export default function About() {
             {t('about.Q2')}
           </Typography>
           <Typography component="p" variant="subtitle1">
-            {t('about.AnswerQ2')}
+            {t('about.AnswerQ2')} <a href={flags().moreAboutCliniserve}>{t('about.Q2')}</a>.
           </Typography>
         </Grid>
       </Paper>
@@ -71,7 +73,7 @@ export default function About() {
             {t('about.Q3')}
           </Typography>
           <Typography component="p" variant="subtitle1">
-            {t('about.AnswerQ3')}
+            {t('about.AnswerQ3')} <a href={flags().moreAboutCliniserveTest}>{t('about.Q3')}</a>.
           </Typography>
         </Grid>
       </Paper>

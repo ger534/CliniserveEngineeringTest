@@ -4,8 +4,8 @@ import Typography from '@material-ui/core/Typography';
 import Title from './Title';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from "react";
-import { getData } from '../../api/data';
-import { flags } from '../../../src/flags'
+import { getData } from '../../../api/data';
+import { flags } from '../../../flags'
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 

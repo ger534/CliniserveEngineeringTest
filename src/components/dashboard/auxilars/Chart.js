@@ -3,7 +3,7 @@ import { useTheme } from '@material-ui/core/styles';
 import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
 import Title from './Title';
 import { useTranslation } from 'react-i18next';
-import { getData } from '../../api/data';
+import { getData } from '../../../api/data';
 import { useEffect, useState } from "react";
 
 export default function Chart() {

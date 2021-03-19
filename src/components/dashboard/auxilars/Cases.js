@@ -7,7 +7,7 @@ import TableRow from '@material-ui/core/TableRow';
 import TablePagination from '@material-ui/core/TablePagination';
 import Title from './Title';
 import { useTranslation } from 'react-i18next';
-import { getData } from '../../api/data';
+import { getData } from '../../../api/data';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useEffect, useState } from "react";
 

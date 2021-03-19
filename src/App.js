@@ -1,12 +1,4 @@
-import './App.css';
-import Dashbord from '../src/components/dashboard/Dashboard'
-import About from '../src/components/about/About'
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from 'react-router-dom';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -17,36 +9,38 @@ import IconButton from '@material-ui/core/IconButton';
 import LanguageIcon from '@material-ui/icons/Language';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import InfoIcon from '@material-ui/icons/Info';
 
 import Badge from '@material-ui/core/Badge';
 import Drawer from '@material-ui/core/Drawer';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import {Link as LinkMaterial,} from '@material-ui/core/';
-
 
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import { mainListItems } from '../src/components/dashboard/listItems';
 import * as React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
+import { flags } from './flags'
+
+import Dashbord from '../src/components/dashboard/Dashboard'
+import About from '../src/components/about/About'
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Link,
+  Route
+} from 'react-router-dom';
 
 
-function Footer(props) {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center" {...props}>
-      <LinkMaterial style={{ textDecoration: 'none', color: 'textSecondary'}} color="inherit" href="https://github.com/Cliniserve/EngineeringTest">
-        Cliniserve Engineering Recruiting Test
-      </LinkMaterial>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -128,11 +122,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+//array for menu
+let menu = [
+  {
+    icon: <DashboardIcon />,
+    text: 'drawer.dashboard',
+    route: '/'
+  },
+  {
+    icon: <InfoIcon />,
+    text: 'drawer.about',
+    route: '/about'
+  }
+]
+
 function App() {
 
   //language
   const { t, i18n } = useTranslation('common');
-  const languages = i18n.languages
 
   const classes = useStyles();
   const [openDrawer, setopenDrawer] = React.useState(true);
@@ -156,6 +163,32 @@ function App() {
     }
     setAnchorEl(null);
   };
+
+  const mainListItems = (
+    <div>
+      {menu.map((item) =>
+        <Link to={item.route} style={{ textDecoration: 'none', color: 'black' }} key={item.text}>
+          <ListItem button>
+            <ListItemIcon>
+              {item.icon}
+            </ListItemIcon>
+            <ListItemText primary={t(item.text)} />
+          </ListItem>
+        </Link>
+      )}
+    </div>
+  );
+
+  function Footer(props) {
+    return (
+      <Typography variant="body2" color="textSecondary" align="center" {...props}>
+        <a href={flags().moreAboutCliniserveTest} style={{ textDecoration: 'none', color: 'gray'}}>{t('footer')}</a>
+        {' '}
+        {new Date().getFullYear()}
+        {'.'}
+      </Typography>
+    );
+  }
 
   return (
 
@@ -187,7 +220,7 @@ function App() {
 
 
             </IconButton>
-            
+
             <Menu
               id="language-menu"
               anchorEl={anchorEl}
@@ -195,14 +228,14 @@ function App() {
               open={Boolean(anchorEl)}
               onClose={handleLanguageClose}
             >
-              {languages.map((lan) =>
+              {i18n.languages.map((lan) =>
                 <MenuItem key={lan} onClick={(event) => handleLanguageClose(lan, event)} >{lan}</MenuItem>
               )}
             </Menu>
-            
+
           </Toolbar>
         </AppBar>
-        
+
         <Drawer
           variant="permanent"
           classes={{

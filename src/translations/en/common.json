@@ -20,10 +20,15 @@
     },
     "about": {
         "Q1": "More about Covid-19",
-        "AnswerQ1": "you can learn more about Covid-19 in ${link}",
+        "AnswerQ1": "You can learn more about Covid-19 in ",
         "Q2": "More about Cliniserve",
-        "AnswerQ2": "Learn more about cliniserver in the official site ${link}",
+        "AnswerQ2": "Learn more about Cliniserver in the official site ",
         "Q3": "More about this page",
-        "AnswerQ3": "About the Cliniserve Engineering Recruiting Test in the README.md file here ${link}"
-    }
+        "AnswerQ3": "About the Cliniserve Engineering Recruiting Test in the README.md file "
+    },
+    "drawer": {
+        "dashboard": "Dashboard",
+        "about": "More Info"
+    },
+    "footer": "Cliniserve Engineering Recruiting Test"
 }

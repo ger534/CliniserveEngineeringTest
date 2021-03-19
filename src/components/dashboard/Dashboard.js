@@ -3,9 +3,9 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Chart from './Chart';
-import Update from './Update';
-import Cases from './Cases';
+import Chart from './auxilars/Chart';
+import Update from './auxilars/Update';
+import Cases from './auxilars/Cases';
 
 const useStyles = makeStyles((theme) => ({
   root: {
