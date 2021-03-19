@@ -1,10 +1,10 @@
 Question 1 - How long did you spend on the coding test? What would you add to your solution if you had more time?
     
-    Start day: 18:00 March 13 st
-    End day: 4:00 March 19 st
+    Start day: 18:00 March 13 st (CST)
+    End day: 4:00 March 19 st (CST)
 
     I had to take Monday off. And also, I spent approx 4 hours working for day, so doing the site from scratch (but with material-ui), I spent roughly 3 working days in total.
-    If I had more time I would do a component Table.js apart from the file Chart.js and more tests.
+    If I had more time I would do a component Table.js apart from the file Chart.js and more tests. And a dark mode would be cool.
     
 Question 2 - What alternative approaches/solutions to the user story did you consider when engineering your solution? 
              What benefits/downsides would they have had compared to the selected solution?
